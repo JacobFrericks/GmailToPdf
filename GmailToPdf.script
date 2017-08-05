@@ -38,15 +38,15 @@ function processInbox() {
         var bodyText = "https://mail.google.com/mail/u/0/#inbox/" + msg[0].getId() + "<br><br>" + body;
       }
     
-      var bodydochtml = DocsList.getFolderById(folderId).createFile(msg[0].getSubject(), bodyText, "text/html");
+      var bodydochtml = DriveApp.getFolderById(folderId).createFile(msg[0].getSubject(), bodyText, "text/html");
       var bodyId = bodydochtml.getId();
  
       // Convert the HTML to PDF
       var bodydocpdf = bodydochtml.getAs('application/pdf');
-      DocsList.getFolderById(folderId).createFile(bodydocpdf);
+      DriveApp.getFolderById(folderId).createFile(bodydocpdf);
  
       // Trash the temporary HTML file
-      DocsList.getFileById(bodyId).setTrashed(true);
+      DriveApp.getFileById(bodyId).setTrashed(true);
     
   }
     
